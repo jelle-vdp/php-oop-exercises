@@ -29,16 +29,6 @@ class Beverage {
         $this->price = $price;
     }
 
-}
-
-class Beer extends Beverage {
-    private float $alcoholPc;
-
-    public function __construct(string $name, string $color, float $price, float $alcoholPc){
-        parent::__construct($name, $color, $price);
-        $this->alcoholPc = $alcoholPc;
-    }
-    
     public function setName($name){
         $this->name = $name;
     }
@@ -70,13 +60,27 @@ class Beer extends Beverage {
     public function getTemperature(){
         return $this->temperature;
     }
+
+}
+
+class Beer extends Beverage {
+    private float $alcoholPc;
+
+    public function __construct(string $name, string $color, float $price, float $alcoholPc){
+        parent::__construct($name, $color, $price);
+        $this->alcoholPc = $alcoholPc;
+    }
     
     public function printInfo(): void{
         echo $this->getName() . " is a " . $this->getColor() . " colored beverage, served " . $this->getTemperature() . ", priced at €" . number_format($this->getPrice(), 2) . " with an alcoholpercentage of " . number_format($this->getAlcoholPercentage(), 1) . "%.";
     }
 
-    public function getAlcoholPercentage(): void{
-        echo "$this->getName has an alcoholpercentage of " . number_format($this->alcoholPc, 1) . "%.";
+    public function printAlcoholPercentage(): void{
+        echo $this->getName() . " has an alcoholpercentage of " . number_format($this->getAlcoholPercentage(), 1) . "%.";
+    }
+
+    public function getAlcoholPercentage(): float{
+        return $this->alcoholPc;
     }
 
     public function setAlcoholPercentage($pc){
@@ -86,10 +90,10 @@ class Beer extends Beverage {
 
 $caraPils = new Beer("Cara Pils", "blond", 0.60, 4.4);
 
-$caraPils->getAlcoholPercentage();
+$caraPils->printAlcoholPercentage();
 $caraPils->setAlcoholPercentage(4.5);
 echo "<br><br>";
-$caraPils->getAlcoholPercentage();
+$caraPils->printAlcoholPercentage();
 echo "<br><br>";
 echo $caraPils->getColor();
 echo "<br><br>";

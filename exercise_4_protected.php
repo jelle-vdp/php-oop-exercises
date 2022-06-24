@@ -27,6 +27,10 @@ class Beverage {
     public function printInfo(): void{
         echo "$this->name is a $this->color colored beverage, served $this->temperature, priced at €" . number_format($this->price, 2);
     }
+    
+    public function getColor(){
+        return $this->color;
+    }
 }
 
 $cola = new Beverage("Cola", "black", 2);
@@ -53,10 +57,6 @@ class Beer extends Beverage {
 
     public function setAlcoholPercentage($pc){
         $this->alcoholPc = $pc;
-    }
-
-    public function getColor(){
-        return $this->color;
     }
 }
 
